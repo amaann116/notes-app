@@ -1,8 +1,10 @@
 import { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { NoteContext } from '../context/NoteContext'
 
 function NoteForm() {
     const { createNote } = useContext(NoteContext)
+    const navigate = useNavigate();
     const [note, setNote] = useState({
         title: "",
         content: ""
@@ -13,6 +15,7 @@ function NoteForm() {
         if (!note.title || !note.content) return
         createNote(note)
         setNote({ title: "", content: "" })
+        navigate("/");
     }
 
     return (

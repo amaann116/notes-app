@@ -38,9 +38,7 @@ export const NoteProvider = ({ children }) => {
     const updateNote = async (id, updateNote) => {
         try {
             const response = await BACKEND_URL.put(`/update-note/${id}`, updateNote);
-            setNotes(notes.map((note) => {
-                note._id === id ? response.data : note
-            }))
+            getNotes();
         } catch (error) {
             console.error("Error : ", error);
         }
@@ -50,16 +48,14 @@ export const NoteProvider = ({ children }) => {
     const deleteNote = async (id) => {
         try {
             await BACKEND_URL.delete(`/delete-note/${id}`);
-            setNotes(notes.filter((note) => {
-                note._id !== id
-            }))
+            getNotes();
         } catch (error) {
             console.error("Error : ", error);
         }
     }
 
     return (
-        <NoteContext.Provider value={{ notes, loading, createNote, updateNote, deleteNote }}>
+        <NoteContext.Provider value={{ notes, loading, getNotes, createNote, updateNote, deleteNote }}>
             {children}
         </NoteContext.Provider>
     )

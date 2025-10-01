@@ -7,7 +7,7 @@ import noteRoutes from "./routes/noteRoute.js"
 const app = express();
 
 dotenv.config();
-const port = process.env.port || 4002
+const port = process.env.PORT || 4002
 
 
 // Database Connection
