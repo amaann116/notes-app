@@ -37,7 +37,7 @@ export const NoteProvider = ({ children }) => {
     // Update a note
     const updateNote = async (id, updateNote) => {
         try {
-            const response = await BACKEND_URL.put(`/update-note/${id}`, updateNote);
+            await BACKEND_URL.put(`/update-note/${id}`, updateNote);
             getNotes();
         } catch (error) {
             console.error("Error : ", error);
